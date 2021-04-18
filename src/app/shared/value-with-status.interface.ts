@@ -1,6 +1,6 @@
 import { Status } from "./status.enum";
 
 export interface ValueWithStatus<T> {
-  value: T;
-  status: Status;
+  readonly value: Readonly<T>;
+  readonly status: Status;
 }
