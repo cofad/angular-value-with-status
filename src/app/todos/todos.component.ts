@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Status } from "../shared/enums/status.enum";
-import { TodoService } from "./todo.service";
+import { TodoService } from "./todos.service";
 
 @Component({
   selector: "app-todos",
