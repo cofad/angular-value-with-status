@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
+import { DeepReadonly } from "ts-essentials";
 import { Status } from "../shared/status.enum";
 import { Todo } from "../shared/todo.interface";
 import { ValueWithStatus } from "../shared/value-with-status.interface";
@@ -9,14 +10,14 @@ import { ValueWithStatus } from "../shared/value-with-status.interface";
   providedIn: "root"
 })
 export class TodoService {
-  public todos$ = new BehaviorSubject<ValueWithStatus<Todo[]>>({
+  public todos$ = new BehaviorSubject<DeepReadonly<ValueWithStatus<Todo[]>>>({
     value: [],
     status: Status.Initialized
   });
 
   constructor(private http: HttpClient) {}
 
-  public getTodos$(): BehaviorSubject<ValueWithStatus<Todo[]>> {
+  public getTodos$(): BehaviorSubject<DeepReadonly<ValueWithStatus<Todo[]>>> {
     return this.todos$;
   }
 
