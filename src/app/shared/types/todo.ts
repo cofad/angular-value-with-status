@@ -1,4 +1,4 @@
-export interface Todo {
+export type Todo {
   readonly userId: number;
   readonly id: number;
   readonly title: string;
