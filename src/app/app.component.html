@@ -1,11 +1,1 @@
-<ng-container *ngIf="todos$ | async as todos">
-  <div *ngIf="todos.status === Status.Initialized">Please load the todos</div>
-
-  <div *ngIf="todos.status === Status.Loading">Loading...</div>
-
-  <ul *ngIf="todos.status === Status.Loaded">
-    <li *ngFor="let todo of todos.value">{{todo.title}}</li>
-  </ul>
-
-  <div *ngIf="todos.status === Status.Error">Error loading todos</div>
-</ng-container>
+<app-todos></app-todos>

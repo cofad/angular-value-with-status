@@ -1,9 +1,9 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { BehaviorSubject } from "rxjs";
-import { Status } from "../shared/enums/status";
-import { Todo } from "./todo";
-import { ValueWithStatus } from "../shared/types/value-with-status";
+import { Status } from "../shared/enums/status.enum";
+import { Todo } from "./todo.type";
+import { ValueWithStatus } from "../shared/types/value-with-status.type";
 
 @Injectable({
   providedIn: "root"

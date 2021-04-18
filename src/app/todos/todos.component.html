@@ -1,0 +1,15 @@
+<ng-container *ngIf="todos$ | async as todos">
+  <ng-container [ngSwitch]="todos.status">
+    <div *ngSwitchCase="Status.Initialized">Please load the todos</div>
+
+    <div *ngSwitchCase="Status.Loading">Loading...</div>
+
+    <ul *ngSwitchCase="Status.Loaded">
+      <li *ngFor="let todo of todos.value">{{todo.title}}</li>
+    </ul>
+
+    <div *ngSwitchCase="Status.Error">Error loading todos</div>
+
+    <div *ngSwitchDefault>Unknown Status</div>
+  </ng-container>
+</ng-container>
