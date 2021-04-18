@@ -9,7 +9,7 @@ import { ValueWithStatus } from "../shared/types/value-with-status.type";
   providedIn: "root"
 })
 export class TodoService {
-  public todos$ = new BehaviorSubject<Readonly<ValueWithStatus<Todo[]>>>({
+  private todos$ = new BehaviorSubject<Readonly<ValueWithStatus<Todo[]>>>({
     value: [],
     status: Status.Initialized
   });
