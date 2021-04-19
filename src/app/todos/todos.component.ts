@@ -14,6 +14,14 @@ export class TodosComponent implements OnInit {
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    this.todoService.loadTodos();
+    this.todoService.loadTodos$().subscribe(
+      todos => {
+        console.log("Loaded");
+        console.log(todos);
+      },
+      error => {
+        console.log("error loading");
+      }
+    );
   }
 }

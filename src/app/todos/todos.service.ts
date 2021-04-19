@@ -1,9 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, Observable, of, throwError } from "rxjs";
 import { Status } from "../shared/enums/status.enum";
 import { Todo } from "./todo.type";
 import { ValueWithStatus } from "../shared/types/value-with-status.type";
+import { catchError, map, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
@@ -20,19 +21,21 @@ export class TodoService {
     return this.todos$;
   }
 
-  public loadTodos(): void {
+  public loadTodos$(): Observable<Readonly<ValueWithStatus<Todo[]>>> {
     this.todos$.next({ value: [], status: Status.Loading });
 
-    this.http
+    return this.http
       .get<Todo[]>("https://jsonplaceholder.typicode.com/todos")
-      .subscribe(
-        todos => {
-          this.todos$.next({ value: todos, status: Status.Loaded });
-        },
-        error => {
-          console.error("Error loading todos", error);
+      .pipe(
+        map<Todo[], ValueWithStatus<Todo[]>>(todos => {
+          return { value: todos, status: Status.Loaded };
+        }),
+        tap(todos => this.todos$.next(todos)),
+        catchError(error => {
+          console.error(error);
           this.todos$.next({ value: [], status: Status.Error });
-        }
+          return throwError(error);
+        })
       );
   }
 }
