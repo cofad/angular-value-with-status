@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+
 import { Status } from "../shared/enums/status.enum";
 import { TodoService } from "./todos.service";
 
@@ -14,14 +15,6 @@ export class TodosComponent implements OnInit {
   constructor(private todoService: TodoService) {}
 
   ngOnInit() {
-    this.todoService.loadTodos$().subscribe(
-      todos => {
-        console.log("Loaded");
-        console.log(todos);
-      },
-      error => {
-        console.log("error loading");
-      }
-    );
+    this.todoService.loadTodos$().subscribe();
   }
 }

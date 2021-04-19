@@ -1,16 +1,19 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable, of, throwError } from "rxjs";
+import { BehaviorSubject, Observable, throwError } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
+
 import { Status } from "../shared/enums/status.enum";
 import { Todo } from "./todo.type";
 import { ValueWithStatus } from "../shared/types/value-with-status.type";
-import { catchError, map, tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root"
 })
 export class TodoService {
-  private todos$ = new BehaviorSubject<Readonly<ValueWithStatus<Todo[]>>>({
+  private readonly todos$ = new BehaviorSubject<
+    Readonly<ValueWithStatus<Todo[]>>
+  >({
     value: [],
     status: Status.Initialized
   });
@@ -18,7 +21,7 @@ export class TodoService {
   constructor(private http: HttpClient) {}
 
   public getTodos$(): BehaviorSubject<Readonly<ValueWithStatus<Todo[]>>> {
-    return this.todos$;
+     return this.todos$;
   }
 
   public loadTodos$(): Observable<Readonly<ValueWithStatus<Todo[]>>> {
