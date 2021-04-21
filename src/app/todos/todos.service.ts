@@ -4,8 +4,8 @@ import { BehaviorSubject, Observable, throwError } from "rxjs";
 import { catchError, map, tap } from "rxjs/operators";
 
 import { Status } from "../shared/enums/status.enum";
-import { Todo } from "./todo.type";
 import { ValueWithStatus } from "../shared/types/value-with-status.type";
+import { Todo } from "./todo.type";
 
 @Injectable({
   providedIn: "root"
