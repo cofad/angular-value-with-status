@@ -21,7 +21,7 @@ export class TodoService {
   constructor(private http: HttpClient) {}
 
   public getTodos$(): BehaviorSubject<Readonly<ValueWithStatus<Todo[]>>> {
-     return this.todos$;
+    return this.todos$;
   }
 
   public loadTodos$(): Observable<Readonly<ValueWithStatus<Todo[]>>> {
